@@ -8,16 +8,16 @@ app_id='c696b774'
 app_key='0b75d11a71ea39f84546c8e4ad612550'
 language='en'
 word_id=raw_input("enter the word you want to search")
-if os.path.isfile('/home/gupta/Desktop/cod/CompletionReportOutput.csv'):
+if os.path.isfile('/home/gupta/Desktop/cod/CompletionReportOutput.csv'):  #check if the file is already created or not
 	f=open('/home/gupta/Desktop/cod/CompletionReportOutput.csv','r')
-	for line in f.readlines():
+	for line in f.readlines():                                       #check inside the file, whether the word is present or not 
 		line = line.strip()
 		columns = line.split()
 		name = columns[0]
 		if name==word_id:
 			print(line)
 			sys.exit()
-	f.close()
+	f.close()                                         #if the word is not present inside the file then search it inside the API
 	url='https://od-api.oxforddictionaries.com:443/api/v1/entries/'+language+'/'+word_id.lower()+'/definitions'
 	r=requests.get(url, headers={'app_id':app_id,'app_key':app_key})
 	te=r.json()
@@ -28,7 +28,7 @@ if os.path.isfile('/home/gupta/Desktop/cod/CompletionReportOutput.csv'):
 		data=[[word_id+"  ",te]]
 		a.writerows(data)
 	print(r)
-else:
+else:                                                                                           #if the file is not created
 	url='https://od-api.oxforddictionaries.com:443/api/v1/entries/'+language+'/'+word_id.lower()+'/definitions'
 	r=requests.get(url, headers={'app_id':app_id,'app_key':app_key})
 	te=r.json()
