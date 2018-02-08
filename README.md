@@ -9,7 +9,7 @@ app_key='0b75d11a71ea39f84546c8e4ad612550'
 language='en'
 word_id=raw_input("enter the word you want to search")
 if os.path.isfile('/home/gupta/Desktop/cod/CompletionReportOutput.csv'):  #check if the file is already created or not
-	f=open('/home/gupta/Desktop/cod/CompletionReportOutput.csv','r')
+	f=open('/home/gupta/Desktop/cod/CompletionReportOutput.csv','r')  #path where the file is located
 	for line in f.readlines():                                       #check inside the file, whether the word is present or not 
 		line = line.strip()
 		columns = line.split()
